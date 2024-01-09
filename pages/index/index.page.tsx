@@ -5,7 +5,7 @@ import { useFlag } from "@featurevisor/react";
 export { Page };
 
 function Page() {
-	const isEnabled = useFlag("showDeprecatedRoutes")
+	const isEnabled = useFlag("contentAnimations")
 	return (
 		<>
 			<h1>Hello from vite-plugin-ssr</h1>

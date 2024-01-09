@@ -1,8 +1,9 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig, mergeConfig } from "vite";
+// import react from "@vitejs/plugin-react";
 import ssr from "vike/plugin";
 import { vavite } from "vavite";
 import vercel from 'vite-plugin-vercel'
+// import type { UserConfig } from 'vite'
 
 export default defineConfig({
 	ssr: {
@@ -21,13 +22,16 @@ export default defineConfig({
 			},
 		},
 	],
-
+	vercel: {
+		defaultMaxDuration: 30,
+		expiration: 86400,
+	},
 	plugins: [
 		vavite({
 			serverEntry: "/server/index.ts",
 			serveClientAssetsInDev: true,
 		}),
-		react(),
+		// react(),
 		ssr({ disableAutoFullBuild: true, prerender: true }),
 		vercel()
 	],
