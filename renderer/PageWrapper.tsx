@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import { PageContextProvider } from "./usePageContext";
 import "./PageWrapper.css";
 import { Link } from "./Link";
 import type { PageContext } from "./types";
 import { FeaturevisorProvider } from "@featurevisor/react";
-import { createInstance } from "@featurevisor/sdk";
+// import { createInstance } from "@featurevisor/sdk";
 
-export { PageWrapper };
+import { getInstance } from '../utils/featurevisor'
 
-function PageWrapper({
+export function PageWrapper({
 	children,
 	pageContext,
 }: {
@@ -17,9 +17,22 @@ function PageWrapper({
 	pageContext: PageContext;
 }) {
 
-	const f = createInstance({
-		datafileUrl: "https://raw.githubusercontent.com/skaparelos/random/main/datafile-tag-all.json"
-	});
+	// const f = createInstance({
+	// 	datafileUrl: "https://raw.githubusercontent.com/skaparelos/random/main/datafile-tag-all.json"
+	// });
+
+	const [f, setF] = useState<any>(null)
+
+	useEffect(() => {
+		// const d = createInstance({
+		// 	datafileUrl: "https://raw.githubusercontent.com/skaparelos/random/main/datafile-tag-all.json"
+		// });
+		getInstance().then((r) => setF(r))
+	}, [])
+
+	if (!f) {
+		return <></>
+	}
 
 	return (
 		<React.StrictMode>
