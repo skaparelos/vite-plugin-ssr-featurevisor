@@ -7,7 +7,7 @@ import type { PageContext } from "./types";
 import { FeaturevisorProvider } from "@featurevisor/react";
 // import { createInstance } from "@featurevisor/sdk";
 
-import { getInstance } from '../utils/featurevisor'
+import { getInstance } from '#~/utils/featurevisor'
 
 export function PageWrapper({
 	children,

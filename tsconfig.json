@@ -15,5 +15,9 @@
     "noImplicitAny": true,
     "checkJs": true,
     "resolveJsonModule": true,
+		"paths": {
+      "#~/*": ["./src/*"],
+      "#root/*": ["./"]
+    }
 	}
 }
