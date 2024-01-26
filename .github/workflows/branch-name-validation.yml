@@ -1,0 +1,17 @@
+name: Branch Name Validation
+
+on: [push, pull_request]
+
+jobs:
+  validate-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Validate Branch Name
+        run: |
+          if [[ ! "${{ github.ref }}" =~ [Pp][Ee][Aa][-][0-9]{1,4} ]]; then
+            echo "Error: Branch name does not meet the required pattern [Pp][Ee][Aa][-][0-9]{1,4}"
+            exit 1
+          fi
