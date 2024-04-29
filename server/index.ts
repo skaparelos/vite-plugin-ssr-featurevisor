@@ -6,7 +6,7 @@ import httpDevServer from "vavite/http-dev-server";
 
 startServer();
 
-async function startServer() {
+export default async function startServer() {
 	const app = express();
 
 	if (!httpDevServer) {

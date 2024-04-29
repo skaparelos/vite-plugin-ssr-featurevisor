@@ -4,6 +4,7 @@ import ssr from "vike/plugin";
 import { vavite } from "vavite";
 import vercel from 'vite-plugin-vercel'
 // import type { UserConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
 	ssr: {
@@ -14,9 +15,9 @@ export default defineConfig({
 		]
 	},
 	buildSteps: [
-		{ name: "client" },
+		{ name: 'client' },
 		{
-			name: "server",
+			name: 'server',
 			config: {
 				build: { ssr: true },
 			},
@@ -25,6 +26,12 @@ export default defineConfig({
 	vercel: {
 		defaultMaxDuration: 30,
 		expiration: 86400,
+	},
+	resolve: {
+		alias: {
+			'#~': resolve(__dirname, './src'),
+			'react-dnd': resolve('../../../node_modules/react-dnd'),
+		},
 	},
 	plugins: [
 		vavite({
